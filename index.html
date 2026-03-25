@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MyAnant – Infinite Web Solutions. Premium web development, UI/UX design, SEO, and cloud deployment for Agri-tech, Retail, and Startups." />
+  <meta name="keywords" content="web development, UI/UX design, SEO, cloud deployment, freelancer, agri-tech, startup, retail, MyAnant" />
+  <meta name="author" content="MyAnant" />
+  <title>MyAnant – Infinite Web Solutions</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — Brand Palette
+       Orange #F97316 | White #FFFFFF | Light Blue #38BDF8
+       Royal Blue #1A4FCC | Deep Ink #0D1B3E
+    ============================================================ */
+    :root {
+      --orange:     #F97316;
+      --orange-dk:  #EA6A0A;
+      --orange-lt:  #FB923C;
+      --royal:      #1A4FCC;
+      --royal-dk:   #1340A8;
+      --royal-lt:   #2D6AFF;
+      --sky:        #38BDF8;
+      --sky-lt:     #7DD3FC;
+      --ink:        #0D1B3E;
+      --ink-mid:    #122252;
+      --ink-soft:   #1E3A6E;
+      --body-txt:   #4A5E85;
+      --mist:       #F0F6FF;
+      --white:      #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--body-txt);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--mist); }
+    ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 4px; }
+
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+    /* ── NAVBAR ── */
+    #navbar { transition: background .4s, box-shadow .4s; }
+    #navbar.scrolled {
+      background: rgba(255,255,255,.96) !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(26,79,204,.1);
+    }
+    .nav-link {
+      position: relative; padding: 4px 0;
+      color: var(--body-txt); font-weight: 500;
+      transition: color .3s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute;
+      bottom: -2px; left: 0; width: 0; height: 2px;
+      background: var(--orange); border-radius: 2px;
+      transition: width .3s;
+    }
+    .nav-link:hover { color: var(--orange); }
+    .nav-link:hover::after { width: 100%; }
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    /* ── HERO ── */
+    .hero-section {
+      background:
+        radial-gradient(ellipse 70% 55% at 70% 35%, rgba(56,189,248,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 45% at 12% 78%, rgba(249,115,22,.13) 0%, transparent 60%),
+        linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 55%, var(--royal) 100%);
+      min-height: 100vh; position: relative; overflow: hidden;
+    }
+    .hero-section::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 30px 30px; pointer-events: none;
+    }
+    .hero-heading {
+      background: linear-gradient(120deg, #fff 0%, var(--orange) 30%, var(--sky) 65%, #fff 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradShift 5s linear infinite;
+    }
+    @keyframes gradShift { to { background-position: 200% center; } }
+
+    /* ── SECTION LABELS ── */
+    .sec-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--orange);
+    }
+    .divider  { width: 44px; height: 3px; background: linear-gradient(90deg, var(--orange), transparent); border-radius: 2px; }
+    .divider-c { width: 44px; height: 3px; background: linear-gradient(90deg, transparent, var(--orange), transparent); border-radius: 2px; margin: 0 auto; }
+
+    /* ── CARD LIGHT ── */
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(26,79,204,.1);
+      border-radius: 18px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(249,115,22,.3);
+      box-shadow: 0 20px 55px rgba(26,79,204,.09), 0 0 0 1px rgba(249,115,22,.1);
+    }
+
+    /* ── CARD DARK ── */
+    .card-dk {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      backdrop-filter: blur(8px);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .card-dk:hover {
+      transform: translateY(-5px);
+      border-color: rgba(249,115,22,.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    /* ── ICON BADGE ── */
+    .ibadge {
+      width: 54px; height: 54px;
+      background: linear-gradient(135deg, rgba(249,115,22,.15), rgba(249,115,22,.04));
+      border: 1px solid rgba(249,115,22,.3);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background .3s, border-color .3s;
+    }
+    .card:hover .ibadge,
+    .card-dk:hover .ibadge {
+      background: linear-gradient(135deg, rgba(249,115,22,.3), rgba(249,115,22,.1));
+      border-color: rgba(249,115,22,.6);
+    }
+
+    /* ── BUTTONS ── */
+    .btn-o {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dk));
+      color: #fff; font-family: 'Syne', sans-serif; font-weight: 700;
+      border-radius: 10px; padding: 13px 30px;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-o:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(249,115,22,.45); }
+
+    .btn-r {
+      background: linear-gradient(135deg, var(--royal), var(--royal-dk));
+      color: #fff; font-family: 'Syne', sans-serif; font-weight: 700;
+      border-radius: 10px; padding: 13px 30px;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-r:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(26,79,204,.45); }
+
+    .btn-ow {
+      background: transparent; border: 1.5px solid rgba(255,255,255,.4);
+      color: #fff; font-family: 'Syne', sans-serif; font-weight: 600;
+      border-radius: 10px; padding: 12px 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      cursor: pointer; text-decoration: none;
+      transition: background .3s, border-color .3s, transform .2s;
+    }
+    .btn-ow:hover { background: rgba(255,255,255,.1); border-color: rgba(249,115,22,.6); transform: translateY(-2px); }
+
+    .btn-or {
+      background: transparent; border: 1.5px solid rgba(26,79,204,.35);
+      color: var(--royal); font-family: 'Syne', sans-serif; font-weight: 600;
+      border-radius: 10px; padding: 12px 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      cursor: pointer; text-decoration: none;
+      transition: background .3s, border-color .3s, transform .2s;
+    }
+    .btn-or:hover { background: rgba(26,79,204,.07); border-color: var(--royal); transform: translateY(-2px); }
+
+    /* ── CHIPS ── */
+    .chip-o { background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.3); color: var(--orange-dk); font-size: 13px; padding: 5px 13px; border-radius: 99px; display: inline-flex; align-items: center; gap: 6px; }
+    .chip-r { background: rgba(26,79,204,.08); border: 1px solid rgba(26,79,204,.25); color: var(--royal); font-size: 12px; padding: 4px 11px; border-radius: 99px; }
+    .chip-s { background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.3); color: #0284C7; font-size: 12px; padding: 4px 11px; border-radius: 99px; }
+
+    /* ── PROJECT CARDS ── */
+    .proj-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(26,79,204,.1); position: relative; transition: transform .35s, box-shadow .35s; }
+    .proj-card:hover { transform: scale(1.025); box-shadow: 0 25px 70px rgba(26,79,204,.18); }
+    .proj-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,27,62,.93) 0%, rgba(13,27,62,.45) 50%, transparent 100%);
+      opacity: 0; transition: opacity .35s;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+    }
+    .proj-card:hover .proj-overlay { opacity: 1; }
+
+    /* ── PRICING ── */
+    .p-card {
+      background: var(--white); border: 1px solid rgba(26,79,204,.12);
+      border-radius: 20px; transition: transform .3s, box-shadow .3s;
+    }
+    .p-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(26,79,204,.1); }
+    .p-card.feat { border-color: var(--orange); box-shadow: 0 0 0 1px var(--orange), 0 20px 60px rgba(249,115,22,.14); }
+    .p-card.feat:hover { box-shadow: 0 0 0 1px var(--orange), 0 30px 80px rgba(249,115,22,.28); }
+    .pop-badge {
+      background: linear-gradient(90deg, var(--orange), var(--orange-lt));
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; padding: 4px 16px; border-radius: 99px;
+      text-transform: uppercase; color: #fff;
+    }
+
+    /* ── FORM ── */
+    .finput {
+      background: var(--mist); border: 1.5px solid rgba(26,79,204,.14);
+      border-radius: 10px; color: var(--ink);
+      width: 100%; padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
+      outline: none; transition: border-color .3s, box-shadow .3s;
+    }
+    .finput::placeholder { color: #8EA3C3; }
+    .finput:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(249,115,22,.12); background: #fff; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes floatY { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-16px) } }
+    @keyframes fadeUp { 0%{opacity:0;transform:translateY(28px)} 100%{opacity:1;transform:translateY(0)} }
+    @keyframes glowO { 0%,100%{box-shadow:0 0 20px rgba(249,115,22,.3)} 50%{box-shadow:0 0 50px rgba(249,115,22,.7)} }
+    .float { animation: floatY 6s ease-in-out infinite; }
+    .anim-1 { animation: fadeUp .7s ease forwards; animation-delay:.1s; opacity:0; }
+    .anim-2 { animation: fadeUp .7s ease forwards; animation-delay:.25s; opacity:0; }
+    .anim-3 { animation: fadeUp .7s ease forwards; animation-delay:.4s; opacity:0; }
+    .anim-4 { animation: fadeUp .7s ease forwards; animation-delay:.55s; opacity:0; }
+    .anim-5 { animation: fadeUp .7s ease forwards; animation-delay:.7s; opacity:0; }
+
+    /* ── ORBS ── */
+    .orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
+
+    /* ── TOAST ── */
+    #toast {
+      position:fixed; bottom:24px; right:24px; z-index:9000;
+      background:linear-gradient(135deg, var(--orange), var(--orange-dk));
+      color:#fff; font-family:'Syne',sans-serif; font-weight:700;
+      padding:14px 24px; border-radius:12px;
+      box-shadow:0 10px 40px rgba(249,115,22,.45);
+      opacity:0; transform:translateY(20px);
+      transition:opacity .4s, transform .4s; pointer-events:none;
+    }
+    #toast.show { opacity:1; transform:translateY(0); }
+
+    /* ── QUOTE MARK ── */
+    .qmark { color:var(--orange); font-size:3.5rem; line-height:1; font-family:'Syne',sans-serif; }
+
+    /* ── SECTION BACKGROUNDS ── */
+    .bg-mist { background: var(--mist); }
+    .bg-dark  { background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 60%, var(--royal) 100%); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVBAR ═══ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-4 px-6">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-3 group">
+      <svg viewBox="0 0 44 44" fill="none" class="w-11 h-11">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F97316"/><stop offset="1" stop-color="#FB923C"/>
+          </linearGradient>
+        </defs>
+        <!-- Hexagon -->
+        <path d="M22 2L40 12V32L22 42L4 32V12L22 2Z" fill="url(#lg1)" opacity="0.18" stroke="#F97316" stroke-width="2"/>
+        <!-- Infinity loop -->
+        <path d="M12 22C12 22 14.5 14 22 14C29.5 14 32 22 32 22C32 22 29.5 30 22 30C14.5 30 12 22 12 22Z" stroke="#F97316" stroke-width="1.8" fill="rgba(249,115,22,0.1)"/>
+        <!-- Centre + side dots -->
+        <circle cx="22" cy="22" r="2.8" fill="#F97316"/>
+        <circle cx="12.5" cy="22" r="1.4" fill="#FB923C" opacity=".7"/>
+        <circle cx="31.5" cy="22" r="1.4" fill="#FB923C" opacity=".7"/>
+      </svg>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-.5px;color:#0D1B3E">
+        My<span style="color:#F97316">Anant</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 text-sm">
+      <li><a href="#home"     class="nav-link">Home</a></li>
+      <li><a href="#about"    class="nav-link">About</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#pricing"  class="nav-link">Pricing</a></li>
+      <li><a href="#contact"  class="nav-link">Contact</a></li>
+    </ul>
+    <a href="#contact" class="hidden md:inline-flex btn-o text-sm">Let's Talk <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+
+    <!-- Hamburger -->
+    <button id="menu-toggle" class="md:hidden p-2" style="color:var(--ink)">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden" style="background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(26,79,204,.08);border-radius:0 0 18px 18px;box-shadow:0 8px 40px rgba(26,79,204,.1)">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-1">
+      <a href="#home"     class="nav-link py-3 border-b" style="border-color:rgba(26,79,204,.06)">Home</a>
+      <a href="#about"    class="nav-link py-3 border-b" style="border-color:rgba(26,79,204,.06)">About</a>
+      <a href="#services" class="nav-link py-3 border-b" style="border-color:rgba(26,79,204,.06)">Services</a>
+      <a href="#projects" class="nav-link py-3 border-b" style="border-color:rgba(26,79,204,.06)">Projects</a>
+      <a href="#pricing"  class="nav-link py-3 border-b" style="border-color:rgba(26,79,204,.06)">Pricing</a>
+      <a href="#contact"  class="nav-link py-3">Contact</a>
+      <a href="#contact"  class="btn-o mt-4 justify-center">Let's Talk <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════ HERO / HOME ═══ -->
+<section id="home" class="hero-section pt-28 pb-20 px-6">
+
+  <!-- bg orbs -->
+  <div class="orb w-96 h-96 opacity-20" style="background:#38BDF8;top:0;right:0;animation:floatY 9s ease-in-out infinite;"></div>
+  <div class="orb w-60 h-60 opacity-15" style="background:#F97316;bottom:60px;left:30px;animation:floatY 11s ease-in-out infinite reverse;"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <!-- ════ MAIN HERO ROW ════ -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+
+      <!-- Copy -->
+      <div>
+        <!-- Pill label -->
+        <div class="anim-1 inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full mb-7"
+             style="font-family:'Syne',sans-serif;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#7DD3FC;">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background:#F97316;"></span>
+          Web Creation Studio · Est. 2021
+        </div>
+
+        <h1 class="anim-2 font-extrabold leading-tight mb-6" style="font-size:clamp(2.8rem,6vw,4.4rem)">
+          <span class="hero-heading">Infinite</span><br/>
+          <span style="color:#fff;">Web Solutions</span><br/>
+          <span style="color:#7DD3FC;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;">For Every Vision.</span>
+        </h1>
+
+        <p class="anim-3 text-lg leading-relaxed mb-10 max-w-xl" style="color:rgba(200,220,255,.8)">
+          From agri-tech platforms and local retail shops to ambitious startups — we build pixel-perfect,
+          lightning-fast web experiences that turn visitors into loyal customers.
+        </p>
+
+        <div class="anim-4 flex flex-wrap gap-4 mb-10">
+          <a href="#projects" class="btn-o">View Projects <i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+          <a href="#services" class="btn-ow">Explore Services <i data-lucide="chevron-down" class="w-4 h-4"></i></a>
+        </div>
+
+        <!-- Trust strip -->
+        <div class="anim-5 flex flex-wrap items-center gap-6">
+          <div class="flex -space-x-2">
+            <div class="w-9 h-9 rounded-full border-2 border-white/30 flex items-center justify-center text-xs font-bold text-white" style="background:rgba(249,115,22,.4)">A</div>
+            <div class="w-9 h-9 rounded-full border-2 border-white/30 flex items-center justify-center text-xs font-bold text-white" style="background:rgba(56,189,248,.4)">R</div>
+            <div class="w-9 h-9 rounded-full border-2 border-white/30 flex items-center justify-center text-xs font-bold text-white" style="background:rgba(26,79,204,.5)">S</div>
+            <div class="w-9 h-9 rounded-full border-2 border-white/30 flex items-center justify-center text-xs font-bold text-white" style="background:rgba(249,115,22,.3)">K</div>
+          </div>
+          <p class="text-sm" style="color:rgba(200,220,255,.7)">Trusted by <strong style="color:#fff">50+ happy clients</strong> across India &amp; beyond</p>
+          <span style="color:#F97316;font-size:1rem;">★★★★★</span>
+          <span style="color:#fff;font-size:.9rem;font-weight:600;">5.0 / 5.0</span>
+        </div>
+      </div>
+
+      <!-- Hero visual -->
+      <div class="hidden lg:flex justify-center items-center relative float" style="animation-duration:6s">
+        <!-- Main card -->
+        <div class="card-dk p-7 w-full max-w-sm relative z-10">
+          <div class="flex items-center justify-between mb-5">
+            <span class="sec-label">Live Project</span>
+            <span class="text-xs font-semibold flex items-center gap-1" style="color:#34D399">
+              <span class="w-2 h-2 rounded-full animate-pulse" style="background:#34D399;display:inline-block;"></span> Active
+            </span>
+          </div>
+          <div class="rounded-xl overflow-hidden mb-5" style="height:155px">
+            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=500&q=80" alt="AgroSphere web project" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-bold text-lg mb-1" style="color:#fff;font-family:'Syne',sans-serif;">AgroSphere Platform</h3>
+          <p class="text-sm mb-4" style="color:rgba(180,200,240,.6)">Full-stack agri-tech portal with real-time analytics.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="chip-o" style="font-size:11px;padding:3px 10px;">React</span>
+            <span class="chip-s" style="font-size:11px;padding:3px 10px;">Node.js</span>
+            <span class="chip-r" style="font-size:11px;padding:3px 10px;color:#93C5FD;background:rgba(56,189,248,.1);border-color:rgba(56,189,248,.3)">AWS</span>
+          </div>
+        </div>
+        <!-- Score card -->
+        <div class="card-dk p-4 absolute top-4 -right-8 w-44 opacity-80 z-0" style="transform:rotate(5deg)">
+          <div class="text-xs mb-1" style="color:rgba(180,200,240,.7)">Lighthouse Score</div>
+          <div class="font-extrabold" style="font-family:'Syne',sans-serif;font-size:1.9rem;color:#fff">98<span style="color:#F97316">/100</span></div>
+          <div class="w-full h-2 rounded-full mt-2 overflow-hidden" style="background:rgba(255,255,255,.1)">
+            <div class="h-full rounded-full" style="width:98%;background:linear-gradient(90deg,#F97316,#FB923C)"></div>
+          </div>
+        </div>
+        <!-- Projects card -->
+        <div class="card-dk p-4 absolute -bottom-4 -left-6 w-40 opacity-80 z-0" style="transform:rotate(-4deg)">
+          <div class="text-xs mb-1" style="color:rgba(180,200,240,.7)">Projects Done</div>
+          <div class="font-extrabold" style="font-family:'Syne',sans-serif;font-size:1.9rem;color:#fff">50<span style="color:#38BDF8">+</span></div>
+          <div class="text-xs mt-1" style="color:rgba(180,200,240,.5)">Happy Clients 🎉</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ STATS ROW ════ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <div class="card-dk p-6 text-center">
+        <div class="font-extrabold mb-1" style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff">50<span style="color:#F97316">+</span></div>
+        <p class="text-sm" style="color:rgba(180,200,240,.6)">Projects Delivered</p>
+      </div>
+      <div class="card-dk p-6 text-center">
+        <div class="font-extrabold mb-1" style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff">3<span style="color:#F97316">+</span></div>
+        <p class="text-sm" style="color:rgba(180,200,240,.6)">Years Experience</p>
+      </div>
+      <div class="card-dk p-6 text-center">
+        <div class="font-extrabold mb-1" style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff">98<span style="color:#38BDF8">%</span></div>
+        <p class="text-sm" style="color:rgba(180,200,240,.6)">Client Satisfaction</p>
+      </div>
+      <div class="card-dk p-6 text-center">
+        <div class="font-extrabold mb-1" style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff">24<span style="color:#38BDF8">/7</span></div>
+        <p class="text-sm" style="color:rgba(180,200,240,.6)">Support Available</p>
+      </div>
+    </div>
+
+    <!-- ════ WHY CHOOSE US ════ -->
+    <div class="mt-24 reveal">
+      <div class="text-center mb-12">
+        <p class="sec-label mb-3">Why MyAnant?</p>
+        <div class="divider-c mb-5"></div>
+        <h2 class="font-extrabold" style="font-size:clamp(2rem,4vw,2.8rem);color:#fff">
+          Everything You Need to <span style="color:#F97316">Win Online</span>
+        </h2>
+        <p class="mt-3 max-w-xl mx-auto" style="color:rgba(180,200,240,.65)">
+          We combine technical depth with design excellence — so your website doesn't just look great, it <em style="color:#fff;font-style:normal;font-weight:600">performs</em>.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-dk p-6 reveal d1">
+          <div class="ibadge mb-4"><i data-lucide="zap" class="w-5 h-5" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Lightning Fast Delivery</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">MVP in days, not months. We move at startup speed without cutting corners on quality or security.</p>
+        </div>
+        <div class="card-dk p-6 reveal d2">
+          <div class="ibadge mb-4"><i data-lucide="shield-check" class="w-5 h-5" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Secure &amp; Reliable</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">SSL, DDoS protection, secure auth, and regular backups — your data and users are always protected.</p>
+        </div>
+        <div class="card-dk p-6 reveal d3">
+          <div class="ibadge mb-4"><i data-lucide="smartphone" class="w-5 h-5" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Mobile-First Design</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">60%+ of traffic is mobile. Every site is fully responsive and tested across all screen sizes.</p>
+        </div>
+        <div class="card-dk p-6 reveal d1">
+          <div class="ibadge mb-4"><i data-lucide="trending-up" class="w-5 h-5" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">SEO-Optimised Day 1</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">Semantic HTML, structured data, Core Web Vitals, and keyword strategy baked into every build.</p>
+        </div>
+        <div class="card-dk p-6 reveal d2">
+          <div class="ibadge mb-4"><i data-lucide="indian-rupee" class="w-5 h-5" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Affordable &amp; Transparent</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">Clear pricing, no hidden fees. Agency results at freelancer rates — value you can actually see.</p>
+        </div>
+        <div class="card-dk p-6 reveal d3">
+          <div class="ibadge mb-4"><i data-lucide="headphones" class="w-5 h-5" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Dedicated Support</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">Direct access to the developer — no ticket queues, no hand-offs. Real help, when you need it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ TECH STACK ════ -->
+    <div class="mt-20 reveal">
+      <p class="text-center text-xs font-semibold tracking-widest uppercase mb-6" style="color:rgba(180,200,240,.45);letter-spacing:3px;">Technologies We Master</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="chip-o">React.js</span>
+        <span class="chip-s">Next.js</span>
+        <span class="chip-o">Node.js</span>
+        <span class="chip-s">Tailwind CSS</span>
+        <span class="chip-o">TypeScript</span>
+        <span class="chip-s">PostgreSQL</span>
+        <span class="chip-o">MongoDB</span>
+        <span class="chip-s">GraphQL</span>
+        <span class="chip-o">AWS</span>
+        <span class="chip-s">OpenStack</span>
+        <span class="chip-o">Docker</span>
+        <span class="chip-s">Figma</span>
+      </div>
+    </div>
+
+    <!-- ════ SECTOR BANNERS ════ -->
+    <div class="mt-20 reveal">
+      <div class="text-center mb-10">
+        <p class="sec-label mb-3">Sectors We Serve</p>
+        <h2 class="font-extrabold" style="font-size:clamp(1.8rem,3.5vw,2.5rem);color:#fff">Built for <span style="color:#38BDF8">Your Industry</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="card-dk p-7 text-center reveal d1">
+          <div class="ibadge mx-auto mb-4"><i data-lucide="sprout" class="w-6 h-6" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Agri-tech</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">Farmer portals, crop analytics dashboards, supply-chain marketplaces, and IoT sensor integrations for modern agriculture.</p>
+        </div>
+        <div class="card-dk p-7 text-center reveal d2">
+          <div class="ibadge mx-auto mb-4"><i data-lucide="shopping-bag" class="w-6 h-6" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Retail &amp; Shops</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">High-converting e-commerce sites, online booking systems, product catalogues, and local business landing pages.</p>
+        </div>
+        <div class="card-dk p-7 text-center reveal d3">
+          <div class="ibadge mx-auto mb-4"><i data-lucide="rocket" class="w-6 h-6" style="color:#F97316"></i></div>
+          <h3 class="font-bold text-lg mb-2" style="color:#fff">Startups</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(180,200,240,.65)">MVP landing pages, SaaS dashboards, waitlist funnels, and investor-ready product sites — fast and scalable.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ ABOUT ═══ -->
+<section id="about" class="py-24 px-6" style="background:#fff">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+    <div class="relative reveal">
+      <div class="rounded-2xl overflow-hidden" style="height:460px;border:1px solid rgba(26,79,204,.12)">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=640&q=80" alt="MyAnant developer" class="w-full h-full object-cover" />
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,.65) 0%, transparent 60%)"></div>
+      </div>
+      <!-- Badge float -->
+      <div class="card absolute -bottom-6 -right-4 p-5 flex items-center gap-4 shadow-xl float" style="animation-duration:5s;animation-delay:.8s">
+        <div class="ibadge" style="width:44px;height:44px"><i data-lucide="award" class="w-4 h-4" style="color:#F97316"></i></div>
+        <div>
+          <div class="font-bold" style="font-family:'Syne',sans-serif;color:var(--ink)">Top Rated</div>
+          <div class="text-xs" style="color:var(--body-txt)">Verified Freelancer ⭐</div>
+        </div>
+      </div>
+      <div class="card absolute top-5 -left-4 py-2 px-4 shadow-lg">
+        <span class="font-bold text-sm" style="font-family:'Syne',sans-serif;color:var(--ink)">⚡ Full-Stack Developer</span>
+      </div>
+    </div>
+
+    <div class="reveal d2">
+      <p class="sec-label mb-3">Who We Are</p>
+      <div class="divider mb-5"></div>
+      <h2 class="font-extrabold leading-tight mb-6" style="font-size:clamp(2rem,4vw,3rem);color:var(--ink)">
+        Premium Web Presence<br/>for <span style="color:var(--orange)">Every Sector</span>
+      </h2>
+      <p class="leading-relaxed mb-5" style="color:var(--body-txt)">
+        Hi, I'm the founder of <strong style="color:var(--ink)">MyAnant</strong> — a freelance web studio that believes every business deserves world-class digital presence without a world-class price tag. <em style="font-style:normal;font-weight:600;color:var(--ink)">Anant</em> means <em style="font-style:normal">infinite</em> in Sanskrit — and that's the standard we hold ourselves to.
+      </p>
+      <p class="leading-relaxed mb-5" style="color:var(--body-txt)">
+        With deep expertise in <strong style="color:var(--ink)">Agri-tech</strong>, I've built data-rich farmer portals and crop analytics tools. For <strong style="color:var(--ink)">Retail Shops</strong>, I design high-converting storefronts. And for <strong style="color:var(--ink)">Startups</strong>, I move fast — MVP to launch without the agency overhead.
+      </p>
+      <p class="leading-relaxed mb-8" style="color:var(--body-txt)">Every site I ship is performance-optimised, SEO-ready, and cloud-deployed — built to grow with you from day one.</p>
+
+      <div class="flex flex-wrap gap-3 mb-8">
+        <span class="chip-o"><i data-lucide="sprout" class="w-4 h-4"></i> Agri-tech</span>
+        <span class="chip-o"><i data-lucide="shopping-bag" class="w-4 h-4"></i> Retail &amp; Shops</span>
+        <span class="chip-o"><i data-lucide="rocket" class="w-4 h-4"></i> Startups</span>
+        <span class="chip-r"><i data-lucide="cloud" class="w-4 h-4"></i> Cloud &amp; DevOps</span>
+      </div>
+      <a href="#contact" class="btn-o">Start a Conversation <i data-lucide="message-circle" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ SERVICES ═══ -->
+<section id="services" class="py-24 px-6 bg-mist">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="sec-label mb-3">What We Do</p>
+      <div class="divider-c mb-5"></div>
+      <h2 class="font-extrabold" style="font-size:clamp(2rem,4vw,3rem);color:var(--ink)">Services Built for <span style="color:var(--royal)">Results</span></h2>
+      <p class="mt-4 max-w-xl mx-auto" style="color:var(--body-txt)">End-to-end digital solutions — from concept to cloud. Everything you need under one roof.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card p-7 reveal d1">
+        <div class="ibadge mb-5"><i data-lucide="code-2" class="w-6 h-6" style="color:#F97316"></i></div>
+        <h3 class="font-bold text-xl mb-3" style="color:var(--ink)">Website Development</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--body-txt)">Static landing pages to complex dynamic web apps. Built with React, Next.js &amp; Node for speed and scalability.</p>
+        <ul class="text-xs space-y-2" style="color:var(--body-txt)">
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Static &amp; Dynamic Websites</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> E-commerce &amp; Portals</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> CMS Integration</li>
+        </ul>
+      </div>
+
+      <div class="card p-7 reveal d2">
+        <div class="ibadge mb-5"><i data-lucide="search" class="w-6 h-6" style="color:#F97316"></i></div>
+        <h3 class="font-bold text-xl mb-3" style="color:var(--ink)">SEO &amp; Optimisation</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--body-txt)">Dominate search rankings with technical SEO, Core Web Vitals improvements, and structured data markup.</p>
+        <ul class="text-xs space-y-2" style="color:var(--body-txt)">
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Technical SEO Audit</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Core Web Vitals &amp; Speed</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Keyword Strategy</li>
+        </ul>
+      </div>
+
+      <div class="card p-7 reveal d3">
+        <div class="ibadge mb-5"><i data-lucide="palette" class="w-6 h-6" style="color:#F97316"></i></div>
+        <h3 class="font-bold text-xl mb-3" style="color:var(--ink)">UI/UX Design</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--body-txt)">Beautiful, intuitive interfaces that convert. Every pixel is purposeful — from wireframe to hi-fi prototype.</p>
+        <ul class="text-xs space-y-2" style="color:var(--body-txt)">
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Responsive Mobile Design</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Figma Prototyping</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Brand Identity Systems</li>
+        </ul>
+      </div>
+
+      <div class="card p-7 reveal d1">
+        <div class="ibadge mb-5"><i data-lucide="server" class="w-6 h-6" style="color:#F97316"></i></div>
+        <h3 class="font-bold text-xl mb-3" style="color:var(--ink)">Backend Support</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--body-txt)">Robust APIs, databases, auth systems, and microservices — the engine powering your product reliably.</p>
+        <ul class="text-xs space-y-2" style="color:var(--body-txt)">
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> REST &amp; GraphQL APIs</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Database Design (SQL/NoSQL)</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Auth &amp; Security</li>
+        </ul>
+      </div>
+
+      <div class="card p-7 reveal d2">
+        <div class="ibadge mb-5"><i data-lucide="cloud" class="w-6 h-6" style="color:#F97316"></i></div>
+        <h3 class="font-bold text-xl mb-3" style="color:var(--ink)">Cloud Deployment</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--body-txt)">Zero to production on AWS or OpenStack. CI/CD pipelines, Docker, and auto-scaling infrastructure.</p>
+        <ul class="text-xs space-y-2" style="color:var(--body-txt)">
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> AWS &amp; OpenStack Setup</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> Docker &amp; CI/CD Pipelines</li>
+          <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0" style="color:#F97316"></i> SSL, CDN &amp; Monitoring</li>
+        </ul>
+      </div>
+
+      <!-- CTA card -->
+      <div class="card p-7 reveal d3 flex flex-col justify-between" style="background:linear-gradient(135deg,#FFF4ED,#fff);border-color:rgba(249,115,22,.25)">
+        <div>
+          <div class="ibadge mb-5" style="background:rgba(249,115,22,.18);border-color:rgba(249,115,22,.5)">
+            <i data-lucide="zap" class="w-6 h-6" style="color:#F97316"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3" style="color:var(--ink)">Need Something Custom?</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--body-txt)">Have a unique project? We love challenges. Let's talk and build something extraordinary together.</p>
+        </div>
+        <a href="#contact" class="btn-o mt-6 justify-center text-sm">Get a Free Quote <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ PROJECTS ═══ -->
+<section id="projects" class="py-24 px-6" style="background:#fff">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+      <div>
+        <p class="sec-label mb-3">Portfolio</p>
+        <div class="divider mb-5"></div>
+        <h2 class="font-extrabold" style="font-size:clamp(2rem,4vw,3rem);color:var(--ink)">Featured <span style="color:var(--royal)">Projects</span></h2>
+      </div>
+      <a href="#contact" class="btn-or self-start md:self-auto text-sm">View All Work <i data-lucide="external-link" class="w-4 h-4"></i></a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="proj-card reveal d1">
+        <div style="height:240px">
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="AgroSphere" class="w-full h-full object-cover" />
+          <div class="proj-overlay"><span class="chip-o" style="font-size:11px;padding:3px 9px;margin-bottom:6px;align-self:flex-start">Agri-tech</span><h3 class="font-bold text-lg" style="color:#fff;font-family:'Syne',sans-serif">AgroSphere Portal</h3><p class="text-xs mt-1" style="color:rgba(200,220,255,.7)">Crop analytics &amp; farmer dashboard</p></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d2">
+        <div style="height:240px">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="RetailPro" class="w-full h-full object-cover" />
+          <div class="proj-overlay"><span class="chip-s" style="font-size:11px;padding:3px 9px;margin-bottom:6px;align-self:flex-start">Retail</span><h3 class="font-bold text-lg" style="color:#fff;font-family:'Syne',sans-serif">RetailPro Storefront</h3><p class="text-xs mt-1" style="color:rgba(200,220,255,.7)">E-commerce shop for local retailer</p></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d3">
+        <div style="height:240px">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="LaunchPad" class="w-full h-full object-cover" />
+          <div class="proj-overlay"><span class="chip-r" style="font-size:11px;padding:3px 9px;margin-bottom:6px;align-self:flex-start;color:#93C5FD;background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.3)">Startup</span><h3 class="font-bold text-lg" style="color:#fff;font-family:'Syne',sans-serif">LaunchPad SaaS</h3><p class="text-xs mt-1" style="color:rgba(200,220,255,.7)">MVP landing + waitlist funnel</p></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d1">
+        <div style="height:240px">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80" alt="HarvestHub" class="w-full h-full object-cover" />
+          <div class="proj-overlay"><span class="chip-o" style="font-size:11px;padding:3px 9px;margin-bottom:6px;align-self:flex-start">Agri-tech</span><h3 class="font-bold text-lg" style="color:#fff;font-family:'Syne',sans-serif">HarvestHub Marketplace</h3><p class="text-xs mt-1" style="color:rgba(200,220,255,.7)">B2B agri supply chain platform</p></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d2">
+        <div style="height:240px">
+          <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=600&q=80" alt="FinFlow" class="w-full h-full object-cover" />
+          <div class="proj-overlay"><span class="chip-s" style="font-size:11px;padding:3px 9px;margin-bottom:6px;align-self:flex-start">Fintech</span><h3 class="font-bold text-lg" style="color:#fff;font-family:'Syne',sans-serif">FinFlow Dashboard</h3><p class="text-xs mt-1" style="color:rgba(200,220,255,.7)">Analytics &amp; reporting SaaS UI</p></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d3">
+        <div style="height:240px">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="DevCore" class="w-full h-full object-cover" />
+          <div class="proj-overlay"><span class="chip-r" style="font-size:11px;padding:3px 9px;margin-bottom:6px;align-self:flex-start;color:#93C5FD;background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.3)">Tech Agency</span><h3 class="font-bold text-lg" style="color:#fff;font-family:'Syne',sans-serif">DevCore Agency Site</h3><p class="text-xs mt-1" style="color:rgba(200,220,255,.7)">Corporate website + blog CMS</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ TESTIMONIALS ═══ -->
+<section class="bg-dark py-24 px-6 relative overflow-hidden">
+  <div class="orb w-96 h-96 top-0 right-0 opacity-10" style="background:#38BDF8"></div>
+  <div class="orb w-64 h-64 bottom-0 left-0 opacity-10" style="background:#F97316"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-label mb-3">Client Love</p>
+      <div class="divider-c mb-5"></div>
+      <h2 class="font-extrabold" style="font-size:clamp(2rem,4vw,3rem);color:#fff">What Clients <span style="color:#F97316">Say</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card-dk p-7 reveal d1">
+        <div class="qmark">"</div>
+        <p class="text-sm leading-relaxed mt-2 mb-5" style="color:rgba(180,200,240,.75)">MyAnant transformed our agri-portal from a clunky old site to a sleek modern platform. Farmer registrations jumped 40% in the first month. Incredible work!</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold" style="background:rgba(249,115,22,.3);color:#F97316">R</div>
+          <div><div class="font-semibold text-sm" style="font-family:'Syne',sans-serif;color:#fff">Rajesh Patel</div><div class="text-xs" style="color:rgba(180,200,240,.5)">CEO, AgroSphere India</div></div>
+          <span class="ml-auto text-sm" style="color:#F97316">★★★★★</span>
+        </div>
+      </div>
+      <div class="card-dk p-7 reveal d2">
+        <div class="qmark">"</div>
+        <p class="text-sm leading-relaxed mt-2 mb-5" style="color:rgba(180,200,240,.75)">We needed a fast, attractive site for our retail store. MyAnant delivered in 2 weeks — on budget, SEO-ready, and looks stunning on mobile. Highly recommended!</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold" style="background:rgba(56,189,248,.3);color:#38BDF8">P</div>
+          <div><div class="font-semibold text-sm" style="font-family:'Syne',sans-serif;color:#fff">Priya Sharma</div><div class="text-xs" style="color:rgba(180,200,240,.5)">Owner, ShopEase Pune</div></div>
+          <span class="ml-auto text-sm" style="color:#F97316">★★★★★</span>
+        </div>
+      </div>
+      <div class="card-dk p-7 reveal d3">
+        <div class="qmark">"</div>
+        <p class="text-sm leading-relaxed mt-2 mb-5" style="color:rgba(180,200,240,.75)">As a startup, speed mattered most. MyAnant built our MVP landing page with a waitlist in 5 days. We raised our first seed round with that site. Absolutely 10/10.</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold" style="background:rgba(26,79,204,.4);color:#93C5FD">A</div>
+          <div><div class="font-semibold text-sm" style="font-family:'Syne',sans-serif;color:#fff">Arjun Mehta</div><div class="text-xs" style="color:rgba(180,200,240,.5)">Founder, LaunchPad SaaS</div></div>
+          <span class="ml-auto text-sm" style="color:#F97316">★★★★★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ PRICING ═══ -->
+<section id="pricing" class="py-24 px-6 bg-mist">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="sec-label mb-3">Transparent Pricing</p>
+      <div class="divider-c mb-5"></div>
+      <h2 class="font-extrabold" style="font-size:clamp(2rem,4vw,3rem);color:var(--ink)">Plans for <span style="color:var(--orange)">Every Budget</span></h2>
+      <p class="mt-4 max-w-xl mx-auto" style="color:var(--body-txt)">No hidden fees. No surprise invoices. Pick a plan or request a custom quote for your exact needs.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 items-start">
+
+      <div class="p-card p-8 reveal d1">
+        <p class="sec-label mb-2">Starter</p>
+        <h3 class="font-bold text-2xl mb-1" style="color:var(--ink)">Basic</h3>
+        <p class="text-sm mb-6" style="color:var(--body-txt)">Perfect for individuals &amp; small retail shops.</p>
+        <div class="mb-8"><span class="font-extrabold" style="font-family:'Syne',sans-serif;font-size:2.4rem;color:var(--ink)">₹7,999</span><span class="text-sm ml-1" style="color:var(--body-txt)">/ project</span></div>
+        <ul class="space-y-3 text-sm mb-8" style="color:var(--body-txt)">
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Up to 5 Static Pages</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Mobile-Responsive Design</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Basic On-Page SEO</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Contact Form Integration</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Free Netlify / Vercel Deploy</li>
+          <li class="flex items-start gap-3"><i data-lucide="x" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#CBD5E1"></i><span style="color:#94A3B8">Backend / Database</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="x" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#CBD5E1"></i><span style="color:#94A3B8">Cloud Deployment</span></li>
+        </ul>
+        <a href="#contact" class="btn-or w-full justify-center text-sm">Get Started</a>
+      </div>
+
+      <div class="p-card feat p-8 relative reveal d2">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2"><span class="pop-badge">Most Popular</span></div>
+        <p class="sec-label mb-2">Growth</p>
+        <h3 class="font-bold text-2xl mb-1" style="color:var(--ink)">Standard</h3>
+        <p class="text-sm mb-6" style="color:var(--body-txt)">Ideal for startups &amp; agri-tech businesses.</p>
+        <div class="mb-8"><span class="font-extrabold" style="font-family:'Syne',sans-serif;font-size:2.4rem;color:var(--ink)">₹19,999</span><span class="text-sm ml-1" style="color:var(--body-txt)">/ project</span></div>
+        <ul class="space-y-3 text-sm mb-8" style="color:var(--body-txt)">
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Up to 12 Pages (Static + Dynamic)</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Custom UI/UX Design (Figma)</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Full SEO + Google Analytics</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Node.js Backend + REST API</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> MongoDB / PostgreSQL DB</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> AWS / Vercel Deployment</li>
+          <li class="flex items-start gap-3"><i data-lucide="x" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#CBD5E1"></i><span style="color:#94A3B8">OpenStack / Multi-Cloud</span></li>
+        </ul>
+        <a href="#contact" class="btn-o w-full justify-center text-sm" style="animation:glowO 2.5s ease-in-out infinite">Get Started</a>
+      </div>
+
+      <div class="p-card p-8 reveal d3">
+        <p class="sec-label mb-2">Enterprise</p>
+        <h3 class="font-bold text-2xl mb-1" style="color:var(--ink)">Premium</h3>
+        <p class="text-sm mb-6" style="color:var(--body-txt)">Full-scale solutions for ambitious businesses.</p>
+        <div class="mb-8"><span class="font-extrabold" style="font-family:'Syne',sans-serif;font-size:2.4rem;color:var(--ink)">Custom</span><span class="text-sm ml-1" style="color:var(--body-txt)">quote</span></div>
+        <ul class="space-y-3 text-sm mb-8" style="color:var(--body-txt)">
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Unlimited Pages + Full Web App</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> End-to-End UI/UX System</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Advanced SEO + Technical Audit</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Microservices Architecture</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> AWS + OpenStack Deployment</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> Docker + CI/CD Pipeline</li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#F97316"></i> 3-Month Dedicated Support</li>
+        </ul>
+        <a href="#contact" class="btn-r w-full justify-center text-sm">Request Quote</a>
+      </div>
+
+    </div>
+    <p class="text-center text-sm mt-10 reveal" style="color:var(--body-txt)">All prices are starting estimates. <a href="#contact" class="font-semibold hover:underline" style="color:#F97316">Let's discuss your project →</a></p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ CONTACT ═══ -->
+<section id="contact" class="py-24 px-6" style="background:#fff">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="sec-label mb-3">Get In Touch</p>
+      <div class="divider-c mb-5"></div>
+      <h2 class="font-extrabold" style="font-size:clamp(2rem,4vw,3rem);color:var(--ink)">Let's Build Something <span style="color:var(--orange)">Great</span></h2>
+      <p class="mt-4 max-w-xl mx-auto" style="color:var(--body-txt)">Ready to take your digital presence to the next level? Drop a message — I'll reply within 24 hours.</p>
+    </div>
+    <div class="grid lg:grid-cols-5 gap-10">
+
+      <!-- Form -->
+      <div class="lg:col-span-3 card p-8 reveal d1" style="box-shadow:0 20px 60px rgba(26,79,204,.08)">
+        <h3 class="font-bold text-xl mb-6" style="color:var(--ink)">Send a Message</h3>
+        <form id="contact-form" novalidate>
+          <div class="grid md:grid-cols-2 gap-5 mb-5">
+            <div>
+              <label class="block text-xs mb-2 font-semibold tracking-wide uppercase" style="color:var(--body-txt)">Full Name *</label>
+              <input type="text" id="fname" placeholder="John Doe" class="finput" required />
+            </div>
+            <div>
+              <label class="block text-xs mb-2 font-semibold tracking-wide uppercase" style="color:var(--body-txt)">Email Address *</label>
+              <input type="email" id="femail" placeholder="john@example.com" class="finput" required />
+            </div>
+          </div>
+          <div class="mb-5">
+            <label class="block text-xs mb-2 font-semibold tracking-wide uppercase" style="color:var(--body-txt)">Subject</label>
+            <input type="text" id="fsubject" placeholder="e.g. I need a website for my shop" class="finput" />
+          </div>
+          <div class="mb-6">
+            <label class="block text-xs mb-2 font-semibold tracking-wide uppercase" style="color:var(--body-txt)">Message *</label>
+            <textarea id="fmessage" rows="5" placeholder="Tell me about your project, goals, timeline, and budget..." class="finput" style="resize:none" required></textarea>
+          </div>
+          <button type="submit" class="btn-o w-full justify-center">Send Message <i data-lucide="send" class="w-4 h-4"></i></button>
+        </form>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-2 flex flex-col gap-5 reveal d2">
+
+        <div class="card p-7" style="box-shadow:0 20px 60px rgba(26,79,204,.08)">
+          <h3 class="font-bold text-lg mb-6" style="color:var(--ink)">Contact Details</h3>
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="ibadge" style="width:44px;height:44px"><i data-lucide="phone" class="w-4 h-4" style="color:#F97316"></i></div>
+              <div><p class="text-xs font-semibold tracking-wide uppercase mb-0.5" style="color:var(--body-txt)">Mobile</p><a href="tel:+910000000000" class="font-semibold" style="color:var(--ink)">+91 [Your Number]</a></div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="ibadge" style="width:44px;height:44px"><i data-lucide="mail" class="w-4 h-4" style="color:#F97316"></i></div>
+              <div><p class="text-xs font-semibold tracking-wide uppercase mb-0.5" style="color:var(--body-txt)">Email</p><a href="mailto:hello@myanant.com" class="font-semibold" style="color:var(--ink)">hello@myanant.com</a></div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="ibadge" style="width:44px;height:44px"><i data-lucide="map-pin" class="w-4 h-4" style="color:#F97316"></i></div>
+              <div><p class="text-xs font-semibold tracking-wide uppercase mb-0.5" style="color:var(--body-txt)">Location</p><p class="font-semibold" style="color:var(--ink)">India &amp; Remote Worldwide</p></div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="ibadge" style="width:44px;height:44px"><i data-lucide="clock" class="w-4 h-4" style="color:#F97316"></i></div>
+              <div><p class="text-xs font-semibold tracking-wide uppercase mb-0.5" style="color:var(--body-txt)">Response Time</p><p class="font-semibold" style="color:var(--ink)">Within 24 Hours</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-7">
+          <h3 class="font-bold text-base mb-4" style="color:var(--ink)">Find Me Online</h3>
+          <div class="flex gap-3">
+            <a href="#" class="ibadge hover:border-orange-400 transition-all" style="width:44px;height:44px" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5" style="color:#F97316"></i></a>
+            <a href="#" class="ibadge hover:border-orange-400 transition-all" style="width:44px;height:44px" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5" style="color:#F97316"></i></a>
+            <a href="#" class="ibadge hover:border-orange-400 transition-all" style="width:44px;height:44px" aria-label="Twitter"><i data-lucide="twitter" class="w-5 h-5" style="color:#F97316"></i></a>
+            <a href="#" class="ibadge hover:border-orange-400 transition-all" style="width:44px;height:44px" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5" style="color:#F97316"></i></a>
+          </div>
+        </div>
+
+        <!-- Availability pill -->
+        <div class="rounded-2xl p-6" style="background:linear-gradient(135deg,#FFF4ED,#fff);border:1px solid rgba(249,115,22,.25)">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-3 h-3 rounded-full animate-pulse" style="background:#34D399;display:inline-block;"></span>
+            <span class="font-bold text-sm" style="font-family:'Syne',sans-serif;color:var(--ink)">Currently Available</span>
+          </div>
+          <p class="text-sm leading-relaxed" style="color:var(--body-txt)">Open for new projects this month. <strong style="color:var(--orange)">Limited slots</strong> — book early!</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ FOOTER ═══ -->
+<footer class="py-14 px-6" style="background:#F0F6FF;border-top:1px solid rgba(26,79,204,.1)">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+
+      <div class="md:col-span-2">
+        <a href="#home" class="flex items-center gap-3 mb-4">
+          <svg viewBox="0 0 44 44" fill="none" class="w-9 h-9">
+            <defs><linearGradient id="flg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#F97316"/><stop offset="1" stop-color="#FB923C"/></linearGradient></defs>
+            <path d="M22 2L40 12V32L22 42L4 32V12L22 2Z" fill="url(#flg)" opacity="0.18" stroke="#F97316" stroke-width="2"/>
+            <path d="M12 22C12 22 14.5 14 22 14C29.5 14 32 22 32 22C32 22 29.5 30 22 30C14.5 30 12 22 12 22Z" stroke="#F97316" stroke-width="1.8" fill="rgba(249,115,22,0.1)"/>
+            <circle cx="22" cy="22" r="2.8" fill="#F97316"/>
+          </svg>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:#0D1B3E">My<span style="color:#F97316">Anant</span></span>
+        </a>
+        <p class="text-sm leading-relaxed max-w-xs" style="color:var(--body-txt)">Infinite Web Solutions for every vision. Premium digital experiences without the premium price tag.</p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="ibadge" style="width:36px;height:36px"><i data-lucide="github"    class="w-4 h-4" style="color:#F97316"></i></a>
+          <a href="#" class="ibadge" style="width:36px;height:36px"><i data-lucide="linkedin"  class="w-4 h-4" style="color:#F97316"></i></a>
+          <a href="#" class="ibadge" style="width:36px;height:36px"><i data-lucide="twitter"   class="w-4 h-4" style="color:#F97316"></i></a>
+          <a href="#" class="ibadge" style="width:36px;height:36px"><i data-lucide="instagram" class="w-4 h-4" style="color:#F97316"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-widest mb-4" style="color:var(--ink)">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#home"     class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Home</a></li>
+          <li><a href="#about"    class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">About</a></li>
+          <li><a href="#services" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Services</a></li>
+          <li><a href="#projects" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Projects</a></li>
+          <li><a href="#pricing"  class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Pricing</a></li>
+          <li><a href="#contact"  class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-widest mb-4" style="color:var(--ink)">Services</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#services" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Web Development</a></li>
+          <li><a href="#services" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">SEO &amp; Optimisation</a></li>
+          <li><a href="#services" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">UI/UX Design</a></li>
+          <li><a href="#services" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Backend Support</a></li>
+          <li><a href="#services" class="hover:text-orange-500 transition-colors" style="color:var(--body-txt)">Cloud Deployment</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs" style="border-top:1px solid rgba(26,79,204,.1);color:var(--body-txt)">
+      <p>© <span id="year"></span> MyAnant. Crafted with ❤️ in India.</p>
+      <p>Zero-cost hosting on <strong style="color:#F97316">Netlify</strong> · <strong style="color:#F97316">Vercel</strong> · <strong style="color:#F97316">GitHub Pages</strong></p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast">✓ Message sent! I'll reply within 24 hrs.</div>
+
+
+<script>
+  lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Navbar scroll */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  /* Mobile menu */
+  const tog = document.getElementById('menu-toggle');
+  const mob = document.getElementById('mobile-menu');
+  tog.addEventListener('click', () => {
+    mob.classList.toggle('open');
+    tog.querySelector('i').setAttribute('data-lucide', mob.classList.contains('open') ? 'x' : 'menu');
+    lucide.createIcons();
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mob.classList.remove('open');
+    tog.querySelector('i').setAttribute('data-lucide','menu');
+    lucide.createIcons();
+  }));
+
+  /* Scroll reveal */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  /* Contact form */
+  const toast = document.getElementById('toast');
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const ok = ['fname','femail','fmessage'].every(id => document.getElementById(id).value.trim());
+    if (!ok) {
+      toast.textContent = '⚠ Please fill in all required fields.';
+      toast.style.background = 'linear-gradient(135deg,#b91c1c,#7f1d1d)';
+    } else {
+      e.target.reset();
+      toast.textContent = '✓ Message sent! I\'ll reply within 24 hrs.';
+      toast.style.background = 'linear-gradient(135deg,#F97316,#EA6A0A)';
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  });
+
+  /* Smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a =>
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    })
+  );
+</script>
+</body>
+</html>
